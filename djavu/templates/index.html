@@ -1,0 +1,29 @@
+<li><a href="/logout">logout</a></li>
+<li><a href="/users">users</a></li>
+<li><a href="/images">images</a></li>
+
+<!DOCTYPE html>
+<title>{% block title %}{% endblock %} Djavú</title> 
+<body style="background-color:lightgreen;">
+  <div class="app">
+  
+    <div class="form-section">
+
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+      </form>
+  
+    </div>
+
+    <div class="images-section">
+      {% for image in images %}
+        <a href="{{ url_for('dashboard.serve_image', filename=image) }}" target="_blank">
+          <img src="{{ url_for('dashboard.serve_image', filename=image) }}"/>
+        </a>
+      {% endfor %}
+    </div>
+      
+  </div>
+</body> 
+</html>
